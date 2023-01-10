@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+import React, { ChangeEvent, Component } from "react";
 import "./App.css";
 
 interface State {
@@ -30,6 +29,15 @@ class App extends Component<{}, State> {
     })
   }
 
+  betumeret = (e: ChangeEvent) => {
+    let ujMeret = (e.currentTarget as HTMLInputElement).value;
+    document.body.style.fontSize = ujMeret+"pt";
+  }
+  hatter = (e: ChangeEvent) => {
+    let ujhatter = (e.currentTarget as HTMLInputElement).value;
+    document.body.style.backgroundColor = ujhatter;
+  }
+
   render(): React.ReactNode {
     return (
       <div>
@@ -39,7 +47,9 @@ class App extends Component<{}, State> {
         }}>
           {this.state.datum.toLocaleString()}</p>
         <p className="kockadobas">Kockadobás eredménye: {this.state.dobas }</p>
-        <button onClick={this.kockadobas}>Kockadobás</button>
+        <button onClick={this.kockadobas}>Kockadobás</button><br /><br />
+        <input type='number' onChange={this.betumeret}/><br /><br />
+        <input type='color' onChange={this.hatter}/>
       </div>
     );
   }
