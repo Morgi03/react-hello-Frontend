@@ -5,6 +5,7 @@ interface State {
   datum: Date;
   dobas: number;
   meret: number;
+  szin: string;
 }
 
 class App extends Component<{}, State> {
@@ -15,6 +16,7 @@ class App extends Component<{}, State> {
       datum: new Date(),
       dobas: 0,
       meret:  14,
+      szin: '#FFFFFF'
     };
 
     setInterval(() => {
@@ -39,12 +41,15 @@ class App extends Component<{}, State> {
   }
   hatter = (e: ChangeEvent) => {
     let ujhatter = (e.currentTarget as HTMLInputElement).value;
-    document.body.style.backgroundColor = ujhatter;
+    this.setState({
+      szin: ujhatter
+    })
   }
 
   render(): React.ReactNode {
     return (
-      <div style={{ fontSize: this.state.meret+'pt' }}>
+      <body style={{ backgroundColor: this.state.szin }}>
+      <div style={{ fontSize: this.state.meret+'pt'}}>
         <p id="hello" style={{
           fontStyle: 'italic',
           color:"limegreen",
@@ -52,9 +57,10 @@ class App extends Component<{}, State> {
           {this.state.datum.toLocaleString()}</p>
         <p className="kockadobas">Kockadobás eredménye: {this.state.dobas }</p>
         <button onClick={this.kockadobas}>Kockadobás</button><br /><br />
-        <input type='number' onChange={this.betumeret}/><br /><br />
-        <input type='color' value={this.state.meret} onChange={this.hatter} />
+        <input type='number' value={this.state.meret} onChange={this.betumeret}/><br /><br />
+        <input type='color' value={this.state.szin} onChange={this.hatter} />
       </div>
+      </body>
     );
   }
 }
