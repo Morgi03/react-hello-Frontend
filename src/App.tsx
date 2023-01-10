@@ -4,6 +4,7 @@ import "./App.css";
 interface State {
   datum: Date;
   dobas: number;
+  meret: number;
 }
 
 class App extends Component<{}, State> {
@@ -13,6 +14,7 @@ class App extends Component<{}, State> {
     this.state = {
       datum: new Date(),
       dobas: 0,
+      meret:  14,
     };
 
     setInterval(() => {
@@ -30,8 +32,10 @@ class App extends Component<{}, State> {
   }
 
   betumeret = (e: ChangeEvent) => {
-    let ujMeret = (e.currentTarget as HTMLInputElement).value;
-    document.body.style.fontSize = ujMeret+"pt";
+    let ujMeret =  parseInt((e.currentTarget as HTMLInputElement).value);
+    this.setState({
+      meret: ujMeret
+    })
   }
   hatter = (e: ChangeEvent) => {
     let ujhatter = (e.currentTarget as HTMLInputElement).value;
@@ -40,7 +44,7 @@ class App extends Component<{}, State> {
 
   render(): React.ReactNode {
     return (
-      <div>
+      <div style={{ fontSize: this.state.meret+'pt' }}>
         <p id="hello" style={{
           fontStyle: 'italic',
           color:"limegreen",
@@ -49,7 +53,7 @@ class App extends Component<{}, State> {
         <p className="kockadobas">Kockadobás eredménye: {this.state.dobas }</p>
         <button onClick={this.kockadobas}>Kockadobás</button><br /><br />
         <input type='number' onChange={this.betumeret}/><br /><br />
-        <input type='color' onChange={this.hatter}/>
+        <input type='color' value={this.state.meret} onChange={this.hatter} />
       </div>
     );
   }
