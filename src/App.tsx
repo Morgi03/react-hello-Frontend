@@ -33,8 +33,12 @@ class App extends Component<{}, State> {
   render(): React.ReactNode {
     return (
       <div>
-        <p id="hello">{this.state.datum.toLocaleString()}</p>
-        <p>Kockadobás eredménye: {this.state.dobas }</p>
+        <p id="hello" style={{
+          fontStyle: 'italic',
+          color:"limegreen",
+        }}>
+          {this.state.datum.toLocaleString()}</p>
+        <p className="kockadobas">Kockadobás eredménye: {this.state.dobas }</p>
         <button onClick={this.kockadobas}>Kockadobás</button>
       </div>
     );
