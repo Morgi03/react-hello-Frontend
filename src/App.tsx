@@ -14,6 +14,12 @@ class App extends Component<{}, State> {
     this.state = {
       datum: new Date()
     }
+
+    setInterval(() => {
+      this.setState({
+        datum: new Date()
+      })
+    },1000);
   }
 
 
